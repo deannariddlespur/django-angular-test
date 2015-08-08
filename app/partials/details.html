@@ -1,0 +1,79 @@
+<div class="row">
+    <div ng-if="details.coach" class="col-md-12 text-center">
+    	<h3>Coach: <span class="item-name">{{details.coach.name}}</span></h3>
+
+		<div class="edit-form">
+	    	<div class="form-title">
+	    		<span><b>Edit Coach Name: </b></span>
+	    	</div>
+	    	<div ng-form="editCoach">
+	    		<div class="form-group">
+	    			<input type="text" class="form-control" ng-model="details.coach.name" required>
+	    		</div>
+	    		<div class="form-group">
+		    		<button class="btn btn-primary" ng-click="updateCoach(details.coach)" ng-disabled="!editCoach.$valid">
+		                Update
+		            </button>
+		        </div>
+	    	</div>
+	    </div>
+    </div>
+    <div ng-if="details.team" class="col-md-12 text-center">
+    	<h3>Team: <span class="item-name">{{details.team.name}}</span></h3>
+    	<p>{{details.team.name}} team's coach is:</p>
+    	<span class="item-name">{{details.team.coachDetail.name}}</span>
+
+    	<div class="edit-form">
+	    	<div class="form-title">
+	    		<span><b>Edit Team Info: </b></span>
+	    	</div>
+	    	<div ng-form="editTeam">
+	    		<div class="form-group">
+	    			<input type="text" class="form-control" ng-model="details.team.name" required>
+	    		</div>
+	    		<div class="form-group">
+	    			<select class="form-control" ng-model="details.team.coach" required>
+	    				<option value="" selected="selected">Select a Coach:</option>
+	    				<option ng-selected="details.team.coach == coach.url" ng-repeat="coach in coaches" value="{{coach.url}}">
+	    					{{coach.name}}
+	    				</option>
+	    			</select>
+	    		</div>
+	    		<div class="form-group">
+		    		<button class="btn btn-primary" ng-click="updateTeam(details.team)" ng-disabled="!editTeam.$valid">
+		                Update
+		            </button>
+		        </div>
+	    	</div>
+	    </div>
+    </div>
+    <div ng-if="details.player" class="col-md-12 text-center">
+    	<h3>Player: <span class="item-name">{{details.player.name}}</span></h3>
+    	<p>This player belongs to:</p>
+    	<span class="item-name">{{details.player.teamDetail.name}} Team</span>
+
+    	<div class="edit-form">
+	    	<div class="form-title">
+	    		<span><b>Edit Player Info: </b></span>
+	    	</div>
+	    	<div ng-form="editPlayer">
+	    		<div class="form-group">
+	    			<input type="text" class="form-control" ng-model="details.player.name" required>
+	    		</div>
+	    		<div class="form-group">
+	    			<select class="form-control" ng-model="details.player.team" required>
+	    				<option value="" selected="selected">Select a Team:</option>
+	    				<option ng-selected="details.player.team == team.url" ng-repeat="team in teams" value="{{team.url}}">
+	    					{{team.name}}
+	    				</option>
+	    			</select>
+	    		</div>
+	    		<div class="form-group">
+		    		<button class="btn btn-primary" ng-click="updatePlayer(details.player)" ng-disabled="!editPlayer.$valid">
+		                Update
+		            </button>
+		        </div>
+	    	</div>
+	    </div>
+    </div>
+</div>

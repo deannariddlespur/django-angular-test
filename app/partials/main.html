@@ -1,0 +1,170 @@
+<div class="row">
+    <div class="col-md-12 text-center">
+        <div class="col-md-4">
+        	<h3>Coaches</h3>
+        	<div ng-if="coaches" class="form-group">
+                <div clas="form-group">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="coachSearch" placeholder="Search Coach:">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" ng-model="coachOrder">
+                            <option value="">Order Coach By:</option>
+                            <option value="name">Ascendant Name</option>
+                            <option value="-name">Descendant Name</option>
+                        </select>
+                    </div>
+                </div>
+        		<ul class="list-group">
+        			<li ng-repeat="coach in coaches | filter:coachSearch | orderBy:coachOrder" class="list-group-item">
+        				<b>{{coach.name}}</b>
+                        (
+                        <i  ng-click="coachDetail(coach.url)" class="glyphicon glyphicon-eye-open"></i>
+                        | 
+                        <i ng-click="deleteCoach(coach)" class="glyphicon glyphicon-remove">
+                        </i>
+                        )
+        			</li>
+        		</ul>
+        	</div>
+            <div ng-if="coaches.length == 0">
+                <p><b>There are no coaches.</b></p>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="coachCollapse = !coachCollapse">
+                    Add New Coach
+                </button>
+            </div>
+            <div collapse="coachCollapse" class="margin-top">
+                <div ng-form="coachesForm">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" ng-model="coach.name" placeholder="Coach Name" required>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-primary" ng-click="addCoach(coach)" ng-disabled="!coachesForm.$valid">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+        	<h3>Teams</h3>
+        	<div ng-if="teams" class="form-group">
+                <div clas="form-group">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="teamSearch" placeholder="Search Team:">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" ng-model="teamOrder">
+                            <option value="">Order Team By:</option>
+                            <option value="name">Ascendant Name</option>
+                            <option value="-name">Descendant Name</option>
+                        </select>
+                    </div>
+                </div>
+        		<ul class="list-group">
+        			<li ng-repeat="team in teams | filter:teamSearch | orderBy:teamOrder" class="list-group-item">
+        				<b>{{team.name}}</b>
+                        (
+                        <i ng-click="teamDetail(team.url)" class="glyphicon glyphicon-eye-open"></i>
+                        | 
+                        <i ng-click="deleteTeam(team)" class="glyphicon glyphicon-remove">
+                        </i>
+                        )
+        			</li>
+        		</ul>
+        	</div>
+            <div ng-if="teams.length == 0">
+                <p><b>There are no coaches.</b></p>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="teamCollapse = !teamCollapse">
+                    Add New Team
+                </button>
+            </div>
+            <div collapse="teamCollapse" class="margin-top">
+                <div ng-form="teamsForm">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" ng-model="team.name" placeholder="Team Name" required>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <select ng-model="team.coach" class="form-control" required>
+                                <option value="">Select a Coach</option>
+                                <option ng-repeat="coach in coaches" value="{{coach.url}}">
+                                    {{coach.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-primary" ng-click="addTeam(team)" ng-disabled="!teamsForm.$valid">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+        	<h3>Players</h3>
+        	<div ng-if="players" class="form-group">
+                <div clas="form-group">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="playerSearch" placeholder="Search Player:">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" ng-model="playerOrder">
+                            <option value="">Order Player By:</option>
+                            <option value="name">Ascendant Name</option>
+                            <option value="-name">Descendant Name</option>
+                        </select>
+                    </div>
+                </div>
+        		<ul class="list-group">
+        			<li ng-repeat="player in players | filter:playerSearch | orderBy:playerOrder" class="list-group-item">
+        				<b>{{player.name}}</b>
+                        ( 
+                        <i ng-click="playerDetail(player.url)" class="glyphicon glyphicon-eye-open"></i>
+                        | 
+                        <i ng-click="deletePlayer(player)" class="glyphicon glyphicon-remove">
+                        </i>
+                        )
+        			</li>
+        		</ul>
+        	</div>
+            <div ng-if="players.length == 0">
+                <p><b>There are no coaches.</b></p>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="playerCollapse = !playerCollapse">
+                    Add New Player
+                </button>
+            </div>
+            <div collapse="playerCollapse" class="margin-top">
+                <div ng-form="playersForm">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" ng-model="player.name" placeholder="Player Name" required>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <select ng-model="player.team" class="form-control" required>
+                                <option value="">Select a Team</option>
+                                <option ng-repeat="team in teams" value="{{team.url}}">
+                                    {{team.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-primary" ng-click="addPlayer(player)" ng-disabled="!playersForm.$valid">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

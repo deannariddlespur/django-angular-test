@@ -1,0 +1,37 @@
+.vertical-center{
+	vertical-align: middle;
+}
+
+.glyphicon-remove{
+	color: #FF0000;
+	margin: 0 10px;
+}
+
+.glyphicon-remove:hover{
+	cursor: pointer;
+}
+
+.glyphicon-eye-open{
+	margin: 0 10px;
+}
+
+.glyphicon-eye-open:hover{
+	cursor: pointer;
+}
+
+.item-name{
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.edit-form{
+	text-align: center;
+	border: 1px solid #ccc;
+	padding: 15px;
+	max-width: 25%;
+	margin: 30px auto 0 auto;
+}
+
+.form-title{
+	margin-bottom: 15px;
+}
